@@ -15,7 +15,7 @@ resource "aws_lb_target_group" "tg" {
 ####################################################
 
 resource "aws_alb_target_group_attachment" "tgattachment" {
-  count            = length(aws_instance.instance.*.id) == 3 ? 3 : 0
+  count            = length(aws_instance.instance.*.id) == 2 ? 2 : 0
   target_group_arn = aws_lb_target_group.tg.arn
   target_id        = element(aws_instance.instance.*.id, count.index)
 }
