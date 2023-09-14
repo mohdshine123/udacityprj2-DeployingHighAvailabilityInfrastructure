@@ -1,5 +1,5 @@
   module "project_ec2" {
-   source             = 
+   source             = "./modules/ec2"
    instance_count     = 1
    name               = local.name
    account            = data.aws_caller_identity.current.account_id
