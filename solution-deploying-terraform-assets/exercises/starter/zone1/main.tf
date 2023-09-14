@@ -16,10 +16,10 @@ locals {
    account_owner = local.name
    name          = "${local.name}-project2"
    azs           = ["us-east-2a", "us-east-2b", "us-east-2c"]
-   private_subnet_tags = {
-     "kubernetes.io/role/internal-elb" = 1
-   }
-   public_subnet_tags = {
-     "kubernetes.io/role/elb" = 1
-   }
+   #private_subnet_tags = {
+    # "kubernetes.io/role/internal-elb" = 1
+   #}
+   #public_subnet_tags = {
+    # "kubernetes.io/role/elb" = 1
+   #}
  }
