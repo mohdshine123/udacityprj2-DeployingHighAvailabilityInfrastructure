@@ -17,6 +17,12 @@ us-west-1
 appserver-instance-awdbmbWebserver1  t3.micro  1 replica is in us-west1
 
 ### Descriptions
+
+appserver-instance-aw5y9t  -webserver on zone us-east-2
+Api  appserver-instance-awdbmb- Api server on zone us-east2  
+both are attached to alb which have target groups on multiple availablity zones
+
+
 More detailed descriptions of each asset identified above.
 
 ## DR Plan
