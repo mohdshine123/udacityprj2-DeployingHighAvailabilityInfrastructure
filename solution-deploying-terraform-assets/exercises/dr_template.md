@@ -11,12 +11,10 @@ us-west-1
 ## Servers and Clusters
 
 ### Table 1.1 Summary
-| Asset  |---appserver-instance-aw5y9t
-****appserver-instance-awdbmb    | Purpose  Webservers         | Size     t3.micro                                                              | Qty   2     **   **                                                  | DR                                                                                                           |
-
-****
----------|-------------------|------------------------------------------------------------------------|-----------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| Asset      | Purpose           | Size                                                                   | Qty                                                             | DR                                                                                                           |
+|------------|-------------------|------------------------------------------------------------------------|-----------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
 | Asset name | Brief description | AWS size eg. t3.micro (if applicable, not all assets will have a size) | Number of nodes/replicas or just how many of a particular asset | Identify if this asset is deployed to DR, replicated, created in multiple locations or just stored elsewhere |
+appserver-instance-awdbmb
 
 ### Descriptions
 More detailed descriptions of each asset identified above.
