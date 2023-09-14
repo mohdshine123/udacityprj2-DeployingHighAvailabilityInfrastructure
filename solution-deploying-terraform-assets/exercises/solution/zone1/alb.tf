@@ -1,4 +1,3 @@
-
 module "project_alb" {
    source             = "./modules/alb"
    ec2                = module.project_ec2.aws_instance
