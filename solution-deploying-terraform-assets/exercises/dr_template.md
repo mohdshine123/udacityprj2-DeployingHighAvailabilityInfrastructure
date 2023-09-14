@@ -12,7 +12,7 @@ us-west-1
 
 ### Table 1.1 Summary
 | Asset  |---appserver-instance-aw5y9t
-appserver-instance-awdbmb    | Purpose  Webservers         | Size     t3.micro                                                              | Qty   2                                                          | DR                                                                                                           |
+****appserver-instance-awdbmb    | Purpose  Webservers         | Size     t3.micro                                                              | Qty   2     **   **                                                  | DR                                                                                                           |
 
 ****
 ---------|-------------------|------------------------------------------------------------------------|-----------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
