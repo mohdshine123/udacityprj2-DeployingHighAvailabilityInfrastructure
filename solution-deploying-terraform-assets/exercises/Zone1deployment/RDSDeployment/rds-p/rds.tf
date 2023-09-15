@@ -46,7 +46,7 @@ resource "aws_security_group" "rds_sg1" {
 
 resource "aws_rds_cluster_parameter_group" "cluster_pg" {
   name   = "udacity-pg-p"
-  family = "postgres15"
+  family = "aurora-postgresql15"
 
 lifecycle {
     create_before_destroy = true
