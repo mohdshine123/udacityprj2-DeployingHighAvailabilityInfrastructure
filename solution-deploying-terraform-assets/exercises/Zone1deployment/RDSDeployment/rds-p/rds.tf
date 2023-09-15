@@ -96,14 +96,10 @@ resource "aws_rds_cluster" "udacity_cluster" {
 }
 
 
-output "db_instance_arn" {
-  description = "The ARN of the RDS instance"
-  value       = module.db_cluster.db_instance_arn
-}
 
-output "db_instance_availability_zone" {
-  description = "The availability zone of the RDS instance"
-  value       = module.db_cluster.db_instance_availability_zone
+output "db_cluster_arn" {
+  description = "The ARN of the RDS Cluster"
+  value = aws_rds_cluster.udacity_cluster.arn
 }
 
 
@@ -116,7 +112,10 @@ resource "aws_rds_cluster_instance" "udacity_instance" {
   db_subnet_group_name = aws_db_subnet_group.udacity_db_subnet_group.name
 }
 
-
+output "db_instance_arn" {
+  description = "The ARN of the RDS instance"
+  value       = aws_rds_cluster_instance.udacity_instance.arn[1]
+}
 
 #resource "aws_db_instance" "udacity_instance" {
  # count                  =2
