@@ -4,7 +4,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "2.77.0"
 
-  name                 = "education"
+  name                 = "Udacity-rds"
   cidr                 = "10.0.0.0/16"
   azs                  = data.aws_availability_zones.available.names
   public_subnets       = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
@@ -44,6 +44,24 @@ resource "aws_security_group" "rds_sg1" {
   }
 }
 
+resource "aws_rds_cluster_parameter_group" "cluster_pg" {
+  name   = "udacity-pg-p"
+  family = "postgres15"
+
+  parameter {
+    name  = "binlog_format"    
+    value = "MIXED"
+    apply_method = "pending-reboot"
+  }
+
+  parameter {
+    name = "log_bin_trust_function_creators"
+    value = 1
+    apply_method = "pending-reboot"
+  }
+}
+
+
 resource "aws_db_parameter_group" "education" {
   name   = "education"
   family = "postgres15"
@@ -53,6 +71,27 @@ resource "aws_db_parameter_group" "education" {
     value = "1"
   }
 }
+
+resource "aws_rds_cluster" "udacity_cluster" {
+  cluster_identifier       = "udacity-db-cluster"
+  availability_zones       = ["us-east-2a", "us-east-2b", "us-east-2c"]
+  db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.cluster_pg.name
+  database_name            = "udacityc2"
+  master_username          = "udacity"
+  master_password          = "MyUdacityPassword"
+  vpc_security_group_ids   = [aws_security_group.db_sg_1.id]
+  db_subnet_group_name     = aws_db_subnet_group.udacity_db_subnet_group.name
+  #engine_mode              = "provisioned"
+  #engine_version           = "5.6.mysql_aurora.1.19.1" 
+  engine                 = "postgres"
+  engine_version         = "15.3"
+  skip_final_snapshot      = true
+  storage_encrypted        = false
+  backup_retention_period  = 5
+  depends_on = [aws_rds_cluster_parameter_group.cluster_pg]
+}
+
+
 
 resource "aws_db_instance" "udacity_instance" {
   count                  =2
