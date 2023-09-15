@@ -89,7 +89,7 @@ resource "aws_rds_cluster" "udacity_cluster" {
   #engine_version           = "5.6.mysql_aurora.1.19.1" 
   engine                 = "postgres"
   engine_version         = "15.3"
-  allocated_storage      = 20
+  #allocated_storage      = 20
   skip_final_snapshot      = true
   storage_encrypted        = false
   backup_retention_period  = 5
@@ -109,6 +109,7 @@ resource "aws_rds_cluster_instance" "udacity_instance" {
   identifier           = "udacity-db-instance-${count.index}"
   cluster_identifier   = aws_rds_cluster.udacity_cluster.id
   instance_class       = "db.m5.large"
+  allocated_storage      = 20
   availability_zone      =data.aws_availability_zones.available.names[count.index]
   db_subnet_group_name = aws_db_subnet_group.udacity_db_subnet_group.name
 }
