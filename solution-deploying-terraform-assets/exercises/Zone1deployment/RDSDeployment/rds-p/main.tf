@@ -57,7 +57,9 @@ resource "aws_db_parameter_group" "education" {
 resource "aws_db_instance" "udacity_instance" {
   count                  =2
   identifier             = "udacity-db-instance-${count.index}"
-  availability_zone     = ["us-east-2a", "us-east-2b"]
+  #availability_zone      =data.aws_availability_zones.available.names[0]
+  azs                    = data.aws_availability_zones.available.names
+  #availability_zone     = ["us-east-2a", "us-east-2b"]
   instance_class         = "db.m5.large"
   allocated_storage      = 20
   engine                 = "postgres"
@@ -69,6 +71,6 @@ resource "aws_db_instance" "udacity_instance" {
   parameter_group_name   = aws_db_parameter_group.education.name
   publicly_accessible    = true
   skip_final_snapshot    = true
-  backup_retention_period    = 5
+  backup_retention_period = 5
 }
 
