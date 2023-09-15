@@ -88,6 +88,7 @@ resource "aws_rds_cluster" "udacity_cluster" {
   #engine_version           = "5.6.mysql_aurora.1.19.1" 
   engine                 = "postgres"
   engine_version         = "15.3"
+  allocated_storage      = 20
   skip_final_snapshot      = true
   storage_encrypted        = false
   backup_retention_period  = 5
@@ -115,7 +116,7 @@ resource "aws_rds_cluster_instance" "udacity_instance" {
   #availability_zones      = module.vpc.azs
   #availability_zone     = ["us-east-2a", "us-east-2b"]
   #instance_class         = "db.m5.large"
-  allocated_storage      = 20
+  #allocated_storage      = 20
   #engine                 = "postgres"
   #engine_version         = "15.3"
   #username               = "edu"
