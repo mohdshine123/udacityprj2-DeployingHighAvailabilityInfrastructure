@@ -96,6 +96,17 @@ resource "aws_rds_cluster" "udacity_cluster" {
 }
 
 
+output "db_instance_arn" {
+  description = "The ARN of the RDS instance"
+  value       = module.db_cluster.db_instance_arn
+}
+
+output "db_instance_availability_zone" {
+  description = "The availability zone of the RDS instance"
+  value       = module.db_cluster.db_instance_availability_zone
+}
+
+
 resource "aws_rds_cluster_instance" "udacity_instance" {
   count                = 2
   identifier           = "udacity-db-instance-${count.index}"
