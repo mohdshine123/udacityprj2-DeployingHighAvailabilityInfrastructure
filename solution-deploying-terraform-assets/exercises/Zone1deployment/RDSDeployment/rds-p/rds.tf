@@ -46,11 +46,11 @@ resource "aws_security_group" "rds_sg1" {
 
 resource "aws_rds_cluster_parameter_group" "cluster_pg" {
   name   = "udacity-pg-p"
-  family = "aurora-postgresql15"
+  family = "aurora-mysql"
 
-lifecycle {
-    create_before_destroy = true
-}
+#lifecycle {
+    #create_before_destroy = true
+#}
   #parameter {
    # name  = "binlog_format"    
    # value = "MIXED"
@@ -67,7 +67,7 @@ lifecycle {
 
 resource "aws_db_parameter_group" "education" {
   name   = "education"
-  family = "postgres15"
+  family = "aurora-mysql"
 
   parameter {
     name  = "log_connections"
@@ -90,7 +90,7 @@ resource "aws_rds_cluster" "udacity_cluster" {
   #db_cluster_parameter_group_name   = var.db_cluster_parameter_group_name
   #engine_mode              = "provisioned"
   #engine_version           = "5.6.mysql_aurora.1.19.1" 
-  engine                 = "postgres"
+  engine                 = "aurora-mysql"
   engine_version         = "15.3"
   #allocated_storage      = 20
   skip_final_snapshot      = true
