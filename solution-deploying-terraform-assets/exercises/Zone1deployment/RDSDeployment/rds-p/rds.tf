@@ -74,13 +74,16 @@ resource "aws_db_parameter_group" "education" {
 
 resource "aws_rds_cluster" "udacity_cluster" {
   cluster_identifier       = "udacity-db-cluster"
-  availability_zones       = ["us-east-2a", "us-east-2b", "us-east-2c"]
+  #availability_zones       = ["us-east-2a", "us-east-2b", "us-east-2c"]
   db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.cluster_pg.name
   database_name            = "udacityc2"
   master_username          = "udacity"
   master_password          = "MyUdacityPassword"
   vpc_security_group_ids   = [aws_security_group.db_sg_1.id]
   db_subnet_group_name     = aws_db_subnet_group.udacity_db_subnet_group.name
+  #vpc_security_group_ids = var.vpc_security_group_ids
+  #db_subnet_group_name   = var.db_subnet_group_name
+  #db_cluster_parameter_group_name   = var.db_cluster_parameter_group_name
   #engine_mode              = "provisioned"
   #engine_version           = "5.6.mysql_aurora.1.19.1" 
   engine                 = "postgres"
@@ -92,26 +95,36 @@ resource "aws_rds_cluster" "udacity_cluster" {
 }
 
 
-
-resource "aws_db_instance" "udacity_instance" {
-  count                  =2
-  identifier             = "udacity-db-instance-${count.index}"
-  #availability_zone      =data.aws_availability_zones.available.names[0]
+resource "aws_rds_cluster_instance" "udacity_instance" {
+  count                = 2
+  identifier           = "udacity-db-instance-${count.index}"
+  cluster_identifier   = aws_rds_cluster.udacity_cluster.id
+  instance_class       = "db.m5.large"
   availability_zone      =data.aws_availability_zones.available.names[count.index]
+  db_subnet_group_name = aws_db_subnet_group.udacity_db_subnet_group.name
+}
+
+
+
+#resource "aws_db_instance" "udacity_instance" {
+ # count                  =2
+ # identifier             = "udacity-db-instance-${count.index}"
+  #availability_zone      =data.aws_availability_zones.available.names[0]
+  #availability_zone      =data.aws_availability_zones.available.names[count.index]
   #azs                    = data.aws_availability_zones.available.names
   #availability_zones      = module.vpc.azs
   #availability_zone     = ["us-east-2a", "us-east-2b"]
-  instance_class         = "db.m5.large"
+  #instance_class         = "db.m5.large"
   allocated_storage      = 20
-  engine                 = "postgres"
-  engine_version         = "15.3"
-  username               = "edu"
-  password               = var.db_password
-  db_subnet_group_name   = aws_db_subnet_group.udacity_db_subnet_group.name
-  vpc_security_group_ids = [aws_security_group.rds_sg1.id]
-  parameter_group_name   = aws_db_parameter_group.education.name
-  publicly_accessible    = true
-  skip_final_snapshot    = true
-  backup_retention_period = 5
-}
+  #engine                 = "postgres"
+  #engine_version         = "15.3"
+  #username               = "edu"
+  #password               = var.db_password
+  #db_subnet_group_name   = aws_db_subnet_group.udacity_db_subnet_group.name
+  #vpc_security_group_ids = [aws_security_group.rds_sg1.id]
+  #parameter_group_name   = aws_db_parameter_group.education.name
+  #publicly_accessible    = true
+  #skip_final_snapshot    = true
+  #backup_retention_period = 5
+#}
 
