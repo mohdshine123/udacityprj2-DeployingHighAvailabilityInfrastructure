@@ -59,7 +59,7 @@ resource "aws_db_instance" "udacity_instance" {
   identifier             = "udacity-db-instance-${count.index}"
   #availability_zone      =data.aws_availability_zones.available.names[0]
   availability_zone      =data.aws_availability_zones.available.names[count.index]
-  azs                    = data.aws_availability_zones.available.names
+  #azs                    = data.aws_availability_zones.available.names
   #availability_zones      = module.vpc.azs
   #availability_zone     = ["us-east-2a", "us-east-2b"]
   instance_class         = "db.m5.large"
