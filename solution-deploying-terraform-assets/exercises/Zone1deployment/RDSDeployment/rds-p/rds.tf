@@ -48,17 +48,20 @@ resource "aws_rds_cluster_parameter_group" "cluster_pg" {
   name   = "udacity-pg-p"
   family = "postgres15"
 
-  parameter {
-    name  = "binlog_format"    
-    value = "MIXED"
-    apply_method = "pending-reboot"
-  }
+lifecycle {
+    create_before_destroy = true
+}
+  #parameter {
+   # name  = "binlog_format"    
+   # value = "MIXED"
+   # apply_method = "pending-reboot"
+  #}
 
-  parameter {
-    name = "log_bin_trust_function_creators"
-    value = 1
-    apply_method = "pending-reboot"
-  }
+  #parameter {
+    #name = "log_bin_trust_function_creators"
+    #value = 1
+    #apply_method = "pending-reboot"
+  #}
 }
 
 
