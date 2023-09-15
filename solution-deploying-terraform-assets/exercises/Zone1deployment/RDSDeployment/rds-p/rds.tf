@@ -109,14 +109,14 @@ resource "aws_rds_cluster_instance" "udacity_instance" {
   identifier           = "udacity-db-instance-${count.index}"
   cluster_identifier   = aws_rds_cluster.udacity_cluster.id
   instance_class       = "db.m5.large"
-  allocated_storage      = 20
+  #allocated_storage      = 20
   availability_zone      =data.aws_availability_zones.available.names[count.index]
   db_subnet_group_name = aws_db_subnet_group.udacity_db_subnet_group.name
 }
 
 output "db_instance_arn" {
   description = "The ARN of the RDS instance"
-  value       = aws_rds_cluster_instance.udacity_instance.arn[1]
+  value       = aws_rds_cluster_instance.udacity_instance.arn[count.index]
 }
 
 #resource "aws_db_instance" "udacity_instance" {
