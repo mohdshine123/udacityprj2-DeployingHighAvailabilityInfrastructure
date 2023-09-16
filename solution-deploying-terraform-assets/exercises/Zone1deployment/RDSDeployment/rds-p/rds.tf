@@ -115,6 +115,7 @@ resource "aws_rds_cluster_instance" "udacity_instance" {
   #allocated_storage      = 20
   availability_zone      =data.aws_availability_zones.available.names[count.index]
   db_subnet_group_name = aws_db_subnet_group.udacity_db_subnet_group.name
+  parameter_group_name= aws_db_parameter_group.db_pg.name
 }
 
 output "db_instance_arn" {
