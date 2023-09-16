@@ -49,17 +49,17 @@ resource "aws_rds_cluster_parameter_group" "cluster_pg" {
   #family = "aurora-postgresql15"
   family ="aurora-mysql5.7"
 
- # parameter {
-   # name  = "binlog_format"    
-   # value = "MIXED"
-   # apply_method = "pending-reboot"
- # }
+  parameter {
+    name  = "binlog_format"    
+    value = "MIXED"
+    apply_method = "pending-reboot"
+ }
 
-  #parameter {
-   # name = "log_bin_trust_function_creators"
-   # value = 1
-   # apply_method = "pending-reboot"
- # }
+  parameter {
+    name = "log_bin_trust_function_creators"
+    value = 1
+    apply_method = "pending-reboot"
+  }
 }
 
 
