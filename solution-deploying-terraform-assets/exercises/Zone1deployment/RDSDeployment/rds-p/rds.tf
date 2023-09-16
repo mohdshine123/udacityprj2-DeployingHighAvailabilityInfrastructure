@@ -46,7 +46,7 @@ resource "aws_security_group" "rds_sg1" {
 
 resource "aws_rds_cluster_parameter_group" "cluster_pg" {
   name   = "udacity-pg-p"
-  family = "aurora-mysql"
+  family = "aurora-mysql5.7"
 
 #lifecycle {
     #create_before_destroy = true
@@ -67,7 +67,7 @@ resource "aws_rds_cluster_parameter_group" "cluster_pg" {
 
 resource "aws_db_parameter_group" "education" {
   name   = "education"
-  family = "aurora-mysql"
+  family = "aurora-mysql5.7"
 
   parameter {
     name  = "log_connections"
