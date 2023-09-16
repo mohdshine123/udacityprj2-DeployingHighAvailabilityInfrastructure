@@ -1,4 +1,6 @@
-variable primary_db_cluster_arn {}
+variable "primary_db_cluster_arn" {
+  type        = string
+}
 data "aws_availability_zones" "available" {}
 
 module "vpc" {
