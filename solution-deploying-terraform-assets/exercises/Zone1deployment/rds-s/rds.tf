@@ -1,3 +1,8 @@
+provider "aws" {
+  profile = "default"
+  region  = "us-west-1"
+}
+
 variable "primary_db_cluster_arn" {
   type        = string
 }
