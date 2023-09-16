@@ -69,10 +69,10 @@ resource "aws_db_parameter_group" "db_pg" {
   name   = "UdacityDBparametergroup"
   family = "aurora-mysql5.7"
 
-  parameter {
-    name  = "log_connections"
-    value = "1"
-  }
+  #parameter {
+    #name  = "log_connections"
+    #value = "1"
+  #}
 }
 
 resource "aws_rds_cluster" "udacity_cluster" {
