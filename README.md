@@ -9,4 +9,4 @@
 **2.Solution_SLI_SLO**
 
 
-Referenece code is avaialble in udacitysreproject github repos
+Referenece code is avaialble in udacityprojects github repos
