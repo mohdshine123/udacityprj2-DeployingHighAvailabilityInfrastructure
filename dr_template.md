@@ -30,6 +30,11 @@ Api  appserver-instance-awdbmb- Api server on zone us-east2
 
 both are attached to alb which have target groups on multiple availablity zones
 
+**Cluster -P  udacity-db-cluster** with reader and writer instance on us-east-2 region with 2 azs
+           2 db instances (reader and writer on different azs)
+
+ ****Replica cluster udacity-db-cluster-s** **with reader and writer instance on us-west-1 region with 2 azs
+ 2 db instances (reader and writer on different azs)
 
 More detailed descriptions of each asset identified above.
 
