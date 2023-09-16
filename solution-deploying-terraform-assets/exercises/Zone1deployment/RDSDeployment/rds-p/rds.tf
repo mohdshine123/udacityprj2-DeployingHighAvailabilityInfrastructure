@@ -65,8 +65,8 @@ resource "aws_rds_cluster_parameter_group" "cluster_pg" {
 }
 
 
-resource "aws_db_parameter_group" "education" {
-  name   = "education"
+resource "aws_db_parameter_group" "db_pg" {
+  name   = "UdacityDBparametergroup"
   family = "aurora-mysql5.7"
 
   parameter {
